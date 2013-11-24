@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+var assert = require('simple-assert');
 var gpv = require('..');
 
 describe('pathval', function() {
@@ -18,18 +18,18 @@ describe('pathval', function() {
 
     var arr = [ [ true ] ];
 
-    expect(gpv('hello', object)).to.equal('universe');
-    expect(gpv('universe.hello', object)).to.equal('world');
-    expect(gpv('world[1]', object)).to.equal('universe');
-    expect(gpv('complex[1].universe', object)).to.equal('world');
-    expect(gpv('complex[2][0].hello', object)).to.equal('world');
-    expect(gpv('[0][0]', arr)).to.be.true;
+    assert(gpv('hello', object) === 'universe');
+    assert(gpv('universe.hello', object) === 'world');
+    assert(gpv('world[1]', object) === 'universe');
+    assert(gpv('complex[1].universe', object) === 'world');
+    assert(gpv('complex[2][0].hello', object) === 'world');
+    assert(gpv('[0][0]', arr) === true);
   });
 
   it('handles undefined objects and properties', function() {
     var object = {};
 
-    expect(gpv('this.should.work', undefined)).to.be.undefined;
-    expect(gpv('this.should.work', object)).to.be.undefined;
+    assert(gpv('this.should.work', undefined) === undefined);
+    assert(gpv('this.should.work', object) === undefined);
   });
 });

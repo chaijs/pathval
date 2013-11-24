@@ -16,10 +16,10 @@
   },
   "devDependencies": {
     "mocha": "~1.13.0",
-    "chai": "~1.8.1",
     "coveralls": "~2.3.0",
     "istanbul": "~0.1.44",
-    "jsmd": "~0.2.0"
+    "jsmd": "~0.2.0",
+    "simple-assert": "~1.0.0"
   },
   "author": "Veselin Todorov <hi@vesln.com>",
   "license": "MIT"
