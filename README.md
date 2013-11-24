@@ -61,6 +61,12 @@ $ npm test
 $ npm run-script coverage
 ```
 
+### Readme tests
+
+```bash
+$ npm run-script test-readme
+```
+
 ## License
 
 MIT License
