@@ -20,6 +20,8 @@ var obj = {
       , str: 'Hello again!'
     }
 }
+
+var arr = [ { foo: 'bar' } ];
 ```
 
 Expect:
@@ -32,6 +34,11 @@ Expect:
 getPathValue('prop1.str', obj); // => "Hello"
 getPathValue('prop1.arr[2]', obj); // => "c"
 getPathValue('prop2.arr[0].nested', obj); // => "Universe"
+
+getPathValue('[0].foo', arr); // => "bar"
+
+getPathValue('doesnt.matter', undefined); // => undefined
+getPathValue('doesnt.exist', {}); // => undefined
 ```
 
 ## Installation
