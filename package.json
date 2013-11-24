@@ -7,7 +7,8 @@
   "scripts": {
     "test": "mocha test/*.test.js",
     "coverage": "istanbul cover ./node_modules/.bin/_mocha test/*.test.js",
-    "coveralls": "istanbul cover ./node_modules/.bin/_mocha test/*.test.js --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "istanbul cover ./node_modules/.bin/_mocha test/*.test.js --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test-readme": "jsmd README.md"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,8 @@
     "mocha": "~1.13.0",
     "chai": "~1.8.1",
     "coveralls": "~2.3.0",
-    "istanbul": "~0.1.44"
+    "istanbul": "~0.1.44",
+    "jsmd": "~0.2.0"
   },
   "author": "Veselin Todorov <hi@vesln.com>",
   "license": "MIT"

@@ -24,12 +24,14 @@ var obj = {
 
 Expect:
 
-```js
-var getPathValue = require('pathval');
+<!-- js
+  var getPathValue = require('./');
+-->
 
-getPathValue('prop1.str', obj); // Hello
-getPathValue('prop1.att[2]', obj); // b
-getPathValue('prop2.arr[0].nested', obj); // Universe
+```js
+getPathValue('prop1.str', obj); // => "Hello"
+getPathValue('prop1.arr[2]', obj); // => "c"
+getPathValue('prop2.arr[0].nested', obj); // => "Universe"
 ```
 
 ## Installation
