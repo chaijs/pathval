@@ -7,6 +7,10 @@
 
 ## Usage
 
+```
+var props = require('pathval');
+```
+
 Given:
 
 ```js
@@ -27,18 +31,30 @@ var arr = [ { foo: 'bar' } ];
 Expect:
 
 <!-- js
-  var getPathValue = require('./');
+  var props = require('./');
 -->
 
+#### get
+
 ```js
-getPathValue('prop1.str', obj); // => "Hello"
-getPathValue('prop1.arr[2]', obj); // => "c"
-getPathValue('prop2.arr[0].nested', obj); // => "Universe"
+props.get(obj, 'prop1.str'); // => "Hello"
+props.get(obj, 'prop1.arr[2]'); // => "c"
+props.get(obj, 'prop2.arr[0].nested'); // => "Universe"
 
-getPathValue('[0].foo', arr); // => "bar"
+props.get(arr, '[0].foo'); // => "bar"
 
-getPathValue('doesnt.matter', undefined); // => undefined
-getPathValue('doesnt.exist', {}); // => undefined
+props.get(undefined, 'doesnt.matter'); // => undefined
+props.get({}, 'doesnt.exist'); // => undefined
+```
+
+#### set
+
+```js
+props.set(obj, 'hello.universe', 'properties');
+props.set(obj, 'hello.universe[1].properties', 'galaxy');
+props.set(obj, 'hello', 'universe');
+props.set(obj, 'hello[0]', 1);
+props.set(obj, 'hello[2]', 3);
 ```
 
 ## Installation
