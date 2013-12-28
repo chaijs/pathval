@@ -34,6 +34,8 @@ Expect:
   var props = require('./');
 -->
 
+#### get
+
 ```js
 props.get(obj, 'prop1.str'); // => "Hello"
 props.get(obj, 'prop1.arr[2]'); // => "c"
@@ -43,6 +45,16 @@ props.get(arr, '[0].foo'); // => "bar"
 
 props.get(undefined, 'doesnt.matter'); // => undefined
 props.get({}, 'doesnt.exist'); // => undefined
+```
+
+#### set
+
+```js
+props.set(obj, 'hello.universe', 'properties');
+props.set(obj, 'hello.universe[1].properties', 'galaxy');
+props.set(obj, 'hello', 'universe');
+props.set(obj, 'hello[0]', 1);
+props.set(obj, 'hello[2]', 3);
 ```
 
 ## Installation
