@@ -1,7 +1,7 @@
 var assert = require('simple-assert');
 var gpv = require('..').get;
 
-describe('pathval', function() {
+describe('#get', function() {
   it('returns the correct value', function() {
     var object = {
         hello: 'universe'
