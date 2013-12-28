@@ -1,5 +1,5 @@
 var assert = require('simple-assert');
-var gpv = require('..');
+var gpv = require('..').get;
 
 describe('pathval', function() {
   it('returns the correct value', function() {
@@ -18,18 +18,18 @@ describe('pathval', function() {
 
     var arr = [ [ true ] ];
 
-    assert(gpv('hello', object) === 'universe');
-    assert(gpv('universe.hello', object) === 'world');
-    assert(gpv('world[1]', object) === 'universe');
-    assert(gpv('complex[1].universe', object) === 'world');
-    assert(gpv('complex[2][0].hello', object) === 'world');
-    assert(gpv('[0][0]', arr) === true);
+    assert(gpv(object, 'hello') === 'universe');
+    assert(gpv(object, 'universe.hello') === 'world');
+    assert(gpv(object, 'world[1]') === 'universe');
+    assert(gpv(object, 'complex[1].universe') === 'world');
+    assert(gpv(object, 'complex[2][0].hello') === 'world');
+    assert(gpv(arr, '[0][0]') === true);
   });
 
   it('handles undefined objects and properties', function() {
     var object = {};
 
-    assert(gpv('this.should.work', undefined) === undefined);
-    assert(gpv('this.should.work', object) === undefined);
+    assert(gpv(undefined, 'this.should.work') === undefined);
+    assert(gpv(object, 'this.should.work') === undefined);
   });
 });
