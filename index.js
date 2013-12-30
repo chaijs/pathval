@@ -31,7 +31,7 @@
  */
 
 exports.get = function(obj, path) {
-  var parsed = parsePath(path);
+  var parsed = exports.parse(path);
   return getPathValue(parsed, obj);
 };
 
@@ -69,7 +69,7 @@ exports.get = function(obj, path) {
  */
 
 exports.set = function(obj, path, val) {
-  var parsed = parsePath(path);
+  var parsed = exports.parse(path);
   setPathValue(parsed, val, obj);
 };
 
@@ -88,9 +88,9 @@ exports.set = function(obj, path, val) {
  * @returns {Object} parsed
  */
 
-function parsePath(path) {
-  var str = (path || '').replace(/\[/g, '.[')
-    , parts = str.match(/(\\\.|[^.]+?)+/g);
+exports.parse = function(path) {
+  var str = (path || '').replace(/\[/g, '.[');
+  var parts = str.match(/(\\\.|[^.]+?)+/g);
 
   return parts.map(function(value) {
     var re = /\[(\d+)\]$/
@@ -112,8 +112,8 @@ function parsePath(path) {
  */
 
 function getPathValue(parsed, obj) {
-  var tmp = obj
-    , res;
+  var tmp = obj;
+  var res;
 
   for (var i = 0, l = parsed.length; i < l; i++) {
     var part = parsed[i];
