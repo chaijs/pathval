@@ -2,7 +2,7 @@
   "name": "pathval",
   "version": "0.1.0",
   "description": "Object value retrieval given a string path",
-  "main": "./lib/pathval.js",
+  "main": "./index.js",
   "homepage": "https://github.com/chaijs/pathval",
   "scripts": {
     "test": "hydro",
