@@ -85,7 +85,7 @@ exports.set = function(obj, path, val) {
  * * Arrays are also valid using the formal `myobject.document[3].property`.
  *
  * @param {String} path
- * @returns {Object} parsed
+ * @returns {Array} parsed
  */
 
 exports.parse = function(path) {
