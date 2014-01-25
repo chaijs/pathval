@@ -1,6 +1,5 @@
 [![NPM version](https://badge.fury.io/js/pathval.png)](http://badge.fury.io/js/pathval)
 [![Build Status](https://secure.travis-ci.org/chaijs/pathval.png)](http://travis-ci.org/chaijs/pathval)
-[![Coverage Status](https://coveralls.io/repos/chaijs/pathval/badge.png?branch=master)](https://coveralls.io/r/chaijs/pathval?branch=master)
 [![Code Climate](https://codeclimate.com/github/chaijs/pathval.png)](https://codeclimate.com/github/chaijs/pathval)
 
 # pathval
