@@ -17,10 +17,10 @@
     "istanbul": "~0.1.44",
     "jsmd": "~0.2.0",
     "simple-assert": "~1.0.0",
-    "hydro": "~0.8.7",
-    "hydro-file-suite": "0.0.1",
-    "hydro-doc": "0.0.2",
-    "hydro-bdd": "0.0.3"
+    "hydro": "*",
+    "hydro-file-suite": "*",
+    "hydro-doc": "*",
+    "hydro-bdd": "*"
   },
   "author": "Veselin Todorov <hi@vesln.com>",
   "license": "MIT"
