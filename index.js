@@ -91,13 +91,16 @@ exports.set = function(obj, path, val) {
 exports.parse = function(path) {
   var str = (path || '').replace(/\[/g, '.[');
   var parts = str.match(/(\\\.|[^.]+?)+/g);
+  var re = /\[(\d+)\]$/;
+  var ret = [];
+  var mArr = null;
 
-  return parts.map(function(value) {
-    var re = /\[(\d+)\]$/
-      , mArr = re.exec(value)
-    if (mArr) return { i: parseFloat(mArr[1]) };
-    else return { p: value };
-  });
+  for (var i = 0, len = parts.length; i < len; i++) {
+    mArr = re.exec(parts[i]);
+    ret.push(mArr ? { i: parseFloat(mArr[1]) } : { p: parts[i] });
+  }
+
+  return ret;
 };
 
 /*!
