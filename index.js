@@ -1,108 +1,3 @@
-/**
- * ### .get(obj, path)
- *
- * Retrieve the value in an object given a string path.
- *
- * ```js
- * var obj = {
- *     prop1: {
- *         arr: ['a', 'b', 'c']
- *       , str: 'Hello'
- *     }
- *   , prop2: {
- *         arr: [ { nested: 'Universe' } ]
- *       , str: 'Hello again!'
- *     }
- * };
- * ```
- *
- * The following would be the results.
- *
- * ```js
- * var properties = require('tea-properties');
- * properties.get(obj, 'prop1.str'); // Hello
- * properties.get(obj, 'prop1.att[2]'); // b
- * properties.get(obj, 'prop2.arr[0].nested'); // Universe
- * ```
- *
- * @param {Object} object
- * @param {String} path
- * @return {Object} value or `undefined`
- */
-
-exports.get = function(obj, path) {
-  var parsed = exports.parse(path);
-  return getPathValue(parsed, obj);
-};
-
-/**
- * ### .set(path, value, object)
- *
- * Define the value in an object at a given string path.
- *
- * ```js
- * var obj = {
- *     prop1: {
- *         arr: ['a', 'b', 'c']
- *       , str: 'Hello'
- *     }
- *   , prop2: {
- *         arr: [ { nested: 'Universe' } ]
- *       , str: 'Hello again!'
- *     }
- * };
- * ```
- *
- * The following would be acceptable.
- *
- * ```js
- * var properties = require('tea-properties');
- * properties.set(obj, 'prop1.str', 'Hello Universe!');
- * properties.set(obj, 'prop1.arr[2]', 'B');
- * properties.set(obj, 'prop2.arr[0].nested.value', { hello: 'universe' });
- * ```
- *
- * @param {Object} object
- * @param {String} path
- * @param {Mixed} value
- * @api public
- */
-
-exports.set = function(obj, path, val) {
-  var parsed = exports.parse(path);
-  setPathValue(parsed, val, obj);
-};
-
-/*!
- * Helper function used to parse string object
- * paths. Use in conjunction with `getPathValue`.
- *
- *  var parsed = parsePath('myobject.property.subprop');
- *
- * ### Paths:
- *
- * * Can be as near infinitely deep and nested
- * * Arrays are also valid using the formal `myobject.document[3].property`.
- *
- * @param {String} path
- * @returns {Array} parsed
- */
-
-exports.parse = function(path) {
-  var str = (path || '').replace(/\[/g, '.[');
-  var parts = str.match(/(\\\.|[^.]+?)+/g);
-  var re = /\[(\d+)\]$/;
-  var ret = [];
-  var mArr = null;
-
-  for (var i = 0, len = parts.length; i < len; i++) {
-    mArr = re.exec(parts[i]);
-    ret.push(mArr ? { i: parseFloat(mArr[1]) } : { p: parts[i] });
-  }
-
-  return ret;
-};
-
 /*!
  * Companion function for `parsePath` that returns
  * the value located at the parsed address.
@@ -186,4 +81,124 @@ function setPathValue(parsed, val, obj) {
 
 function defined(val) {
   return !(!val && 'undefined' === typeof val);
+}
+
+var api = {
+  /**
+   * ### .get(obj, path)
+   *
+   * Retrieve the value in an object given a string path.
+   *
+   * ```js
+   * var obj = {
+   *     prop1: {
+   *         arr: ['a', 'b', 'c']
+   *       , str: 'Hello'
+   *     }
+   *   , prop2: {
+   *         arr: [ { nested: 'Universe' } ]
+   *       , str: 'Hello again!'
+   *     }
+   * };
+   * ```
+   *
+   * The following would be the results.
+   *
+   * ```js
+   * var properties = require('tea-properties');
+   * properties.get(obj, 'prop1.str'); // Hello
+   * properties.get(obj, 'prop1.att[2]'); // b
+   * properties.get(obj, 'prop2.arr[0].nested'); // Universe
+   * ```
+   *
+   * @param {Object} object
+   * @param {String} path
+   * @return {Object} value or `undefined`
+   */
+
+  get: function (obj, path) {
+    var parsed = api.parse(path);
+    return getPathValue(parsed, obj);
+  },
+
+  /**
+   * ### .set(path, value, object)
+   *
+   * Define the value in an object at a given string path.
+   *
+   * ```js
+   * var obj = {
+   *     prop1: {
+   *         arr: ['a', 'b', 'c']
+   *       , str: 'Hello'
+   *     }
+   *   , prop2: {
+   *         arr: [ { nested: 'Universe' } ]
+   *       , str: 'Hello again!'
+   *     }
+   * };
+   * ```
+   *
+   * The following would be acceptable.
+   *
+   * ```js
+   * var properties = require('tea-properties');
+   * properties.set(obj, 'prop1.str', 'Hello Universe!');
+   * properties.set(obj, 'prop1.arr[2]', 'B');
+   * properties.set(obj, 'prop2.arr[0].nested.value', { hello: 'universe' });
+   * ```
+   *
+   * @param {Object} object
+   * @param {String} path
+   * @param {Mixed} value
+   * @api public
+   */
+
+  set: function (obj, path, val) {
+    var parsed = api.parse(path);
+    setPathValue(parsed, val, obj);
+  },
+
+  /*!
+   * Helper function used to parse string object
+   * paths. Use in conjunction with `getPathValue`.
+   *
+   *  var parsed = parsePath('myobject.property.subprop');
+   *
+   * ### Paths:
+   *
+   * * Can be as near infinitely deep and nested
+   * * Arrays are also valid using the formal `myobject.document[3].property`.
+   *
+   * @param {String} path
+   * @returns {Array} parsed
+   */
+
+  parse: function (path) {
+    var str = (path || '').replace(/\[/g, '.[');
+    var parts = str.match(/(\\\.|[^.]+?)+/g);
+    var re = /\[(\d+)\]$/;
+    var ret = [];
+    var mArr = null;
+
+    for (var i = 0, len = parts.length; i < len; i++) {
+      mArr = re.exec(parts[i]);
+      ret.push(mArr ? {i: parseFloat(mArr[1])} : {p: parts[i]});
+    }
+
+    return ret;
+  }
+};
+
+// Define an AMD module
+if (typeof define === 'function' && typeof define.amd === 'object') {
+  define(api);
+}
+// Define a CommonJS module
+else if (typeof module !== 'undefined' && module.exports) {
+  module.exports = api;
+}
+// Define pathval globally
+else {
+  window.pathval = api;
 }
