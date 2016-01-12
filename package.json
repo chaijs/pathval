@@ -14,7 +14,7 @@
     "url": "https://github.com/chaijs/pathval"
   },
   "devDependencies": {
-    "istanbul": "~0.1.44",
+    "istanbul": "~0.4.2",
     "jsmd": "~0.2.0",
     "simple-assert": "~1.0.0",
     "hydro": "*",
