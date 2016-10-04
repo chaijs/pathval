@@ -25,3 +25,13 @@ script:
 
 after_success:
   - 'travis-after-all && npm run semantic-release'
+
+env:
+  global:
+    - SAUCELABS_USERNAME=chaijs-pathval
+    # SAUCELABS_ACCESS_TOKEN
+    - secure: F2/lZDhFRxXOqLY3E5hWDJ00sTCl35AJnbJyFH32CvO5GZvP97qXmAfpgFVthX2xGp8KPXOT+QfUHACGuFXfBkCanXvn/ZLXYf/bt8ub87aZP7kwegE2i3pOBxzaG4qLVI/J6iOkxthguWTnTUpPtp+YvFksMYBIfQ5RG12wa2w=
+    # GH_TOKEN
+    - secure: PiIlToly+q4/51/Q7TMVcedVsY/AWef6uqXpPKDiiccFs7humrddFE7t21bZ3W08VG+s3dvrnM85xr0U3FQ5sGCZtT7te7s/qQ1TGS/PTb8ryxex2XbKWU2AlECNZbXmQzM7r+/lVcevE6t9xUclVZwavZnYPBEM5MSI0feHwxU=
+    # NPM_TOKEN (f005d1e5bce9)
+    - secure: b4OFWDUovFA327YwSfPxcJRUS9O0B7GyM4M96rEUcWtjatBrPnMqgkggn3K63Me6feiW1yi/sYKc8ovwmCNlm9QdI3s8i0AgAAaW2ZrctjNWX2uZSVukyLyNwpOxI92kV4CmQySsahs3ZCGPCRk8kdNM32z+qT4hvUhzcHYjRDg=
