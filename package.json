@@ -49,9 +49,6 @@
       "max-statements": 0
     }
   },
-  "dependencies": {
-    "type-detect": "^2.0.1"
-  },
   "devDependencies": {
     "browserify": "^13.0.0",
     "browserify-istanbul": "^1.0.0",

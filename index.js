@@ -7,17 +7,15 @@
  * MIT Licensed
  */
 
-var type = require('type-detect');
-
 /**
  * ### .hasProperty(object, name)
  *
- * This allows checking whether an object has
- * named property or numeric array index.
+ * This allows checking whether an object has own
+ * or inherited from prototype chain named property.
  *
  * Basically does the same thing as the `in`
- * operator but works properly with natives
- * and null/undefined values.
+ * operator but works properly with null/undefined values
+ * and other primitives.
  *
  *     var obj = {
  *         arr: ['a', 'b', 'c']
@@ -39,31 +37,20 @@ var type = require('type-detect');
  *     hasProperty(obj.arr, 3);  // false
  *
  * @param {Object} object
- * @param {String|Number} name
+ * @param {String|Symbol} name
  * @returns {Boolean} whether it exists
  * @namespace Utils
  * @name hasProperty
  * @api public
  */
 
-var literals = {
-  'number': Number,
-  'string': String,
-};
 function hasProperty(obj, name) {
-  var objType = type(obj);
-  // Bad Object, obviously no props at all
-  if (objType === 'null' || objType === 'undefined') {
+  if (typeof obj === 'undefined' || obj === null) {
     return false;
   }
 
-  // The `in` operator does not work with certain literals
-  // box these before the check
-  if (literals[objType] && typeof obj !== 'object') {
-    obj = new literals[objType](obj);
-  }
-
-  return name in obj;
+  // The `in` operator does not work with primitives.
+  return name in Object(obj);
 }
 
 /* !

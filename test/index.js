@@ -9,15 +9,23 @@ describe('hasProperty', function () {
     assert(pathval.hasProperty(arr, 3) === false);
   });
 
-  it('should handle literal types', function () {
+  it('should handle primitives', function () {
     var exampleString = 'string literal';
     assert(pathval.hasProperty(exampleString, 'length') === true);
     assert(pathval.hasProperty(exampleString, 3) === true);
     assert(pathval.hasProperty(exampleString, 14) === false);
+
     assert(pathval.hasProperty(1, 'foo') === false);
+    assert(pathval.hasProperty(false, 'bar') === false);
+    assert(pathval.hasProperty(true, 'toString') === true);
+
+    if (typeof Symbol === 'function') {
+      assert(pathval.hasProperty(Symbol(), 1) === false);
+      assert(pathval.hasProperty(Symbol.iterator, 'valueOf') === true);
+    }
   });
 
-  it('should handle undefined', function () {
+  it('should handle objects', function () {
     var exampleObj = {
       foo: 'bar',
     };
