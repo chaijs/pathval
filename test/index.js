@@ -208,4 +208,10 @@ describe('setPathValue', function () {
     assert(obj.hello[1] === 2);
     assert(obj.hello[2] === 3);
   });
+
+  it('returns the object in which the value was set', function () {
+    var obj = { hello: [ 1, 2, 4 ] };
+    var valueReturned = pathval.setPathValue(obj, 'hello[2]', 3);
+    assert(obj === valueReturned);
+  });
 });
