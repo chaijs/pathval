@@ -70,7 +70,7 @@
     "semantic-release": "^4.3.5",
     "simple-assert": "^1.0.0",
     "travis-after-all": "^1.4.4",
-    "validate-commit-msg": "^2.3.1"
+    "validate-commit-msg": "^2.7.0"
   },
   "engines": {
     "node": "*"
