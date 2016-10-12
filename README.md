@@ -100,7 +100,7 @@ The primary export of `pathval` is an object which has the following methods:
 * `hasProperty(object, name)` - Checks whether an `object` has `name`d property or numeric array index.
 * `getPathInfo(object, path)` - Returns an object with info indicating the value of the `parent` of that path, the `name ` of the property we're retrieving and its `value`.
 * `getPathValue(object, path)` - Retrieves the value of a property at a given `path` inside an `object`'.
-* `setPathValue(object, path, value)` - Sets the `value` of a property at a given `path` inside an `object`'.
+* `setPathValue(object, path, value)` - Sets the `value` of a property at a given `path` inside an `object` and returns the object in which the property has been set.
 
 ```js
 var pathval = require('pathval');
