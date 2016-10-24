@@ -63,7 +63,7 @@
     "karma-coverage": "^0.5.5",
     "karma-mocha": "^0.2.2",
     "karma-phantomjs-launcher": "^1.0.0",
-    "karma-sauce-launcher": "^0.3.1",
+    "karma-sauce-launcher": "^1.1.0",
     "lcov-result-merger": "^1.0.2",
     "mocha": "^3.1.2",
     "phantomjs-prebuilt": "^2.1.5",
