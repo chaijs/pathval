@@ -1,7 +1,9 @@
 <h1 align=center>
   <a href="http://chaijs.com" title="Chai Documentation">
-    <img alt="ChaiJS" src="http://chaijs.com/img/chai-logo.png"/> pathval
+    <img alt="ChaiJS" src="http://chaijs.com/img/chai-logo.png">
   </a>
+  <br>
+  pathval
 </h1>
 
 <p align=center>
