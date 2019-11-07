@@ -145,3 +145,19 @@ pathval.setPathValue(obj, 'earth.country', 'USA');
 
 obj.earth.country; // 'USA'
 ```
+
+
+### Warning!
+
+`pathval` as a module is able to set arbitrary values to arbitrary objects. If you're using this for production purposes, you should only use values that you can trust, or you must sanitise them properly. Refer to the following code for an example of how this may cause security issues if you do not properly sanitize strings:
+
+```js
+var pathval = require("pathval")
+const maliciousUnsanitisedInput = '__proto__.toString'
+
+
+const myUser = {}
+pathval.setPathValue(myUser, maliciousUnsanitisedInput, '1')
+
+Object.prototype.toString === '1' // oh no!
+```
