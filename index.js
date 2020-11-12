@@ -1,5 +1,6 @@
 'use strict';
 
+
 /* !
  * Chai - pathval utility
  * Copyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>
@@ -82,7 +83,7 @@ function parsePath(path) {
     if (mArr) {
       parsed = { i: parseFloat(mArr[1]) };
     } else {
-      parsed = { p: value.replace(/\\([.\[\]])/g, '$1') };
+      parsed = { p: value.replace(/\\([.[\]])/g, '$1') };
     }
 
     return parsed;

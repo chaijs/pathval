@@ -121,11 +121,7 @@ describe('getPathValue', function () {
         hello: 'world',
       },
       world: [ 'hello', 'universe' ],
-      complex: [
-        { hello: 'universe' },
-        { universe: 'world' },
-        [ { hello: 'world' } ],
-      ],
+      complex: [ { hello: 'universe' }, { universe: 'world' }, [ { hello: 'world' } ] ],
     };
 
     var arr = [ [ true ] ];
@@ -171,7 +167,7 @@ describe('setPathValue', function () {
   });
 
   it('allows value to be set in complex object', function () {
-    var obj = { hello: { } };
+    var obj = { hello: {} };
     pathval.setPathValue(obj, 'hello.universe', 42);
     assert(obj.hello.universe === 42);
   });
