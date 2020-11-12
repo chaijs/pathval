@@ -21,6 +21,7 @@
   "scripts": {
     "build": "browserify --standalone pathval -o pathval.js",
     "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "npm run lint -- --fix",
     "prepublish": "npm run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "pretest": "npm run lint",

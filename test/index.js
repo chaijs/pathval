@@ -218,4 +218,30 @@ describe('setPathValue', function () {
     var valueReturned = pathval.setPathValue(obj, 'hello[2]', 3);
     assert(obj === valueReturned);
   });
+
+  describe('fix prototype pollution vulnerability', function () {
+
+    it('exclude constructor', function () {
+      var obj = {};
+      assert(typeof obj.constructor === 'function'); // eslint-disable-line
+      pathval.setPathValue(obj, 'constructor', null);
+      assert(typeof obj.constructor === 'function'); // eslint-disable-line
+    });
+
+    it('exclude __proto__', function () {
+      var obj = {};
+      assert(typeof polluted === 'undefined'); // eslint-disable-line
+      pathval.setPathValue(obj, '__proto__.polluted', true);
+      assert(typeof polluted === 'undefined'); // eslint-disable-line
+    });
+
+    it('exclude prototype', function () {
+      var obj = {};
+      assert(typeof obj.prototype === 'undefined'); // eslint-disable-line
+      pathval.setPathValue(obj, 'prototype', true);
+      assert(typeof obj.prototype === 'undefined'); // eslint-disable-line
+    });
+
+  });
+
 });
