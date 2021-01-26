@@ -7,7 +7,7 @@
     "mocha": true
   },
   "rules": {
-    "eslint no-process-env": "off",
+    "no-process-env": "off",
     "no-new-wrappers": 0,
     "no-array-constructor": 0,
     "no-new-object": 0,
