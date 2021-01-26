@@ -1,11 +1,12 @@
+/* eslint no-process-env: "off" */
+
 'use strict';
+
 var packageJson = require('./package.json');
 var defaultTimeout = 120000;
 var browserifyIstanbul = require('browserify-istanbul');
 module.exports = function configureKarma(config) {
-  var localBrowsers = [
-    'PhantomJS',
-  ];
+  var localBrowsers = [ 'PhantomJS' ];
   var sauceLabsBrowsers = {
     SauceChromeLatest: {
       base: 'SauceLabs',
@@ -41,7 +42,9 @@ module.exports = function configureKarma(config) {
   config.set({
     basePath: '',
     browsers: localBrowsers,
-    logLevel: process.env.npm_config_debug ? config.LOG_DEBUG : config.LOG_INFO,
+    logLevel: process.env.npm_config_debug ?
+      config.LOG_DEBUG :
+      config.LOG_INFO,
     frameworks: [ 'browserify', 'mocha' ],
     files: [ 'test/*.js' ],
     exclude: [],
@@ -51,9 +54,7 @@ module.exports = function configureKarma(config) {
     browserify: {
       debug: true,
       bare: true,
-      transform: [
-        browserifyIstanbul({ ignore: [ '**/node_modules/**', '**/test/**' ] }),
-      ],
+      transform: [ browserifyIstanbul({ ignore: [ '**/node_modules/**', '**/test/**' ] }) ],
     },
     reporters: [ 'progress', 'coverage' ],
     coverageReporter: {
@@ -82,14 +83,11 @@ module.exports = function configureKarma(config) {
       browsers: localBrowsers.concat(Object.keys(sauceLabsBrowsers)),
       sauceLabs: {
         testName: packageJson.name,
-        tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER || new Date().getTime(),
+        tunnelIdentifier:
+          process.env.TRAVIS_JOB_NUMBER || new Date().getTime(),
         recordVideo: true,
-        startConnect: ('TRAVIS' in process.env) === false,
-        tags: [
-          'pathval_' + packageJson.version,
-          process.env.SAUCE_USERNAME + '@' + branch,
-          build,
-        ],
+        startConnect: 'TRAVIS' in process.env === false,
+        tags: [ 'pathval_' + packageJson.version, process.env.SAUCE_USERNAME + '@' + branch, build ],
       },
     });
   }

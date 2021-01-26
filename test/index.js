@@ -121,11 +121,7 @@ describe('getPathValue', function () {
         hello: 'world',
       },
       world: [ 'hello', 'universe' ],
-      complex: [
-        { hello: 'universe' },
-        { universe: 'world' },
-        [ { hello: 'world' } ],
-      ],
+      complex: [ { hello: 'universe' }, { universe: 'world' }, [ { hello: 'world' } ] ],
     };
 
     var arr = [ [ true ] ];
@@ -171,7 +167,7 @@ describe('setPathValue', function () {
   });
 
   it('allows value to be set in complex object', function () {
-    var obj = { hello: { } };
+    var obj = { hello: {} };
     pathval.setPathValue(obj, 'hello.universe', 42);
     assert(obj.hello.universe === 42);
   });
@@ -222,4 +218,30 @@ describe('setPathValue', function () {
     var valueReturned = pathval.setPathValue(obj, 'hello[2]', 3);
     assert(obj === valueReturned);
   });
+
+  describe('fix prototype pollution vulnerability', function () {
+
+    it('exclude constructor', function () {
+      var obj = {};
+      assert(typeof obj.constructor === 'function'); // eslint-disable-line
+      pathval.setPathValue(obj, 'constructor', null);
+      assert(typeof obj.constructor === 'function'); // eslint-disable-line
+    });
+
+    it('exclude __proto__', function () {
+      var obj = {};
+      assert(typeof polluted === 'undefined'); // eslint-disable-line
+      pathval.setPathValue(obj, '__proto__.polluted', true);
+      assert(typeof polluted === 'undefined'); // eslint-disable-line
+    });
+
+    it('exclude prototype', function () {
+      var obj = {};
+      assert(typeof obj.prototype === 'undefined'); // eslint-disable-line
+      pathval.setPathValue(obj, 'prototype', true);
+      assert(typeof obj.prototype === 'undefined'); // eslint-disable-line
+    });
+
+  });
+
 });
