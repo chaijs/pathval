@@ -56,11 +56,7 @@ module.exports = function configureKarma(config) {
       bare: true,
       transform: [ browserifyIstanbul({ ignore: [ '**/node_modules/**', '**/test/**' ] }) ],
     },
-    reporters: [ 'progress', 'coverage' ],
-    coverageReporter: {
-      type: 'lcov',
-      dir: 'coverage',
-    },
+    reporters: [ 'progress' ],
     port: 9876,
     colors: true,
     concurrency: 3,
