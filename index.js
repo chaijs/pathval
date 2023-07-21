@@ -1,5 +1,3 @@
-
-
 /* !
  * Chai - pathval utility
  * Copyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>
@@ -44,7 +42,7 @@
  * @api public
  */
 
-function hasProperty(obj, name) {
+export function hasProperty(obj, name) {
   if (typeof obj === 'undefined' || obj === null) {
     return false;
   }
@@ -202,7 +200,7 @@ function internalSetPathValue(obj, val, parsed) {
  * @api public
  */
 
-function getPathInfo(obj, path) {
+export function getPathInfo(obj, path) {
   const parsed = parsePath(path);
   const last = parsed[parsed.length - 1];
   const info = {
@@ -249,7 +247,7 @@ function getPathInfo(obj, path) {
  * @api public
  */
 
-function getPathValue(obj, path) {
+export function getPathValue(obj, path) {
   const info = getPathInfo(obj, path);
   return info.value;
 }
@@ -287,15 +285,8 @@ function getPathValue(obj, path) {
  * @api private
  */
 
-function setPathValue(obj, path, val) {
+export function setPathValue(obj, path, val) {
   const parsed = parsePath(path);
   internalSetPathValue(obj, val, parsed);
   return obj;
 }
-
-module.exports = {
-  hasProperty,
-  getPathInfo,
-  getPathValue,
-  setPathValue,
-};

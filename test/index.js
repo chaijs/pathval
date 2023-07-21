@@ -1,6 +1,6 @@
 import assert from 'simple-assert';
 
-import pathval from '../index.js';
+import * as pathval from '../index.js';
 
 describe('hasProperty', () => {
   it('should handle array index', () => {

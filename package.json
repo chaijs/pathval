@@ -15,6 +15,7 @@
     "pathval.js"
   ],
   "main": "./index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/chaijs/pathval.git"
@@ -27,7 +28,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "pretest": "npm run lint",
     "test": "npm run test:node && npm run test:browser",
-    "test:browser": "web-test-runner test/index.js",
+    "test:browser": "web-test-runner test/index.js --node-resolve",
     "test:node": "nyc mocha"
   },
   "config": {
