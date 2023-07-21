@@ -37,8 +37,11 @@
   },
   "eslintConfig": {
     "extends": [
-      "strict/es5"
+      "strict/es6"
     ],
+    "parserOptions": {
+        "sourceType": "module"
+    },
     "env": {
       "es6": true
     },
