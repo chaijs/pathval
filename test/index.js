@@ -1,4 +1,4 @@
-import assert from 'simple-assert';
+import { assert } from 'simple-assert';
 
 import * as pathval from '../index.js';
 
